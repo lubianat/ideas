@@ -6,4 +6,5 @@ A dumping ground for halfbaked ideas, some of which will hopefully be worked on 
 ### Fruit Watching App
 A SvelteKit web application for tracking fruits found in markets, inspired by nature observation apps like eBird.
 
-**See:** [fruit-watching-app-guidelines.md](./fruit-watching-app-guidelines.md) for complete development guidelines and work breakdown.
+**Quick Start:** [fruit-watching-app-quickstart.md](./fruit-watching-app-quickstart.md) - Get started in 3 minutes  
+**Full Guidelines:** [fruit-watching-app-guidelines.md](./fruit-watching-app-guidelines.md) - Complete development guide with work breakdown
