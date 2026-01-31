@@ -85,9 +85,9 @@ npm install
 ```typescript
 // users table
 interface User {
-  id: string; // UUID or Wikimedia user ID
+  id: string; // Primary key - use UUID (generated locally)
   wikimedia_username: string;
-  wikimedia_id: string;
+  wikimedia_id: string; // Wikimedia's unique user ID (for reference)
   created_at: Date;
   updated_at: Date;
 }
@@ -208,11 +208,23 @@ WIKIMEDIA_CALLBACK_URL=http://localhost:5173/auth/callback
 ```typescript
 // Nominatim search API
 const searchMarkets = async (query: string) => {
-  const url = `https://nominatim.openstreetmap.org/search?q=${query}&format=json&addressdetails=1&limit=10`;
-  // Filter for marketplaces, supermarkets, etc.
-  const params = {
-    amenity: 'marketplace',
-  };
+  const params = new URLSearchParams({
+    q: query,
+    format: 'json',
+    addressdetails: '1',
+    limit: '10'
+  });
+  const url = `https://nominatim.openstreetmap.org/search?${params.toString()}`;
+  
+  const response = await fetch(url, {
+    headers: {
+      'User-Agent': 'FruitWatchingApp/1.0' // Required by Nominatim
+    }
+  });
+  
+  const results = await response.json();
+  // Optionally filter for marketplaces, supermarkets, etc.
+  return results;
 };
 ```
 
